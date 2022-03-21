@@ -1,0 +1,91 @@
+body{
+  background-color: burlywood;
+}
+header{
+  width: 100%;
+  height: 5%;
+  background-color: brown;
+}
+h1{
+  color: burlywood;
+  font-size: 3em;
+}
+
+main {
+  background-color: blanchedalmond;
+  /* height: 90%; */
+}
+#gridContainer{
+  width: 90%;
+  margin: auto;
+  display: grid;
+  padding: 20px;
+  grid-template-columns: 1fr 4fr;
+  grid-auto-rows: 100px, auto;
+  align-items: center;
+  gap: 15px;
+}
+
+
+#gridItem1{
+  padding: 20px;
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  line-height: 1.5;
+}
+#resultsButton{
+  background-color: aliceblue;
+  border-radius: 30px;
+  width: max-content;
+  height: max-content;
+  border: 5px solid black;
+  padding: 10px;
+}
+#gridItem1 ul li{
+  border-top: 2px solid burlywood;
+  padding: 5px;
+  margin-top: 5px;
+  font-size: 1.1em;
+}
+
+#gridItem2{
+  height: max-content;
+  background-color: white;
+  border: 5px solid burlywood;
+  padding: 30px;
+  text-align: center;
+  align-items: center;
+  font-size: 2em;
+}
+#gridItem2 p{
+  width: 50%;
+  margin: auto;
+}
+
+
+#gridItem2 img{
+  max-width: 30%;
+  margin: 20px;
+}
+
+
+#gridItem3{
+  grid-column: 1/-1;
+  padding: 30px;
+  font-size: 2em;
+  margin-bottom: 50px;
+}
+
+
+footer{
+  background-color: brown;
+  position: fixed;
+  text-align: end;
+  width: 100%;
+  height: 2%;
+  bottom: 0;
+}
+
+
