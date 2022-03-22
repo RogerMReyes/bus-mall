@@ -1,9 +1,14 @@
 <html lang="en">
+
 <head>
   <title>Bus Mall</title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <header>
     <h1>Bus Mall</h1>
@@ -11,7 +16,8 @@
   <main id="gridContainer">
     <div id="gridItem1">
       <div id="resultsButton">View Results</div>
-      <ul id="resultList"></ul>
+      <!-- <p>Please choose the most appealing Products.</p> -->
+      <!-- <ul id="resultList"></ul> -->
     </div>
     <div id="gridItem2">
       <img id="image1" src="" alt="">
@@ -19,13 +25,23 @@
       <img id="image3" src="" alt="">
     </div>
     <div id="gridItem3">
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, error eos. Laudantium blanditiis ratione sit ex magnam dolorum officia numquam ut corrupti odit nisi voluptas nostrum, ipsum fugiat, esse amet.
-        Tempore sequi labore et itaque ab sunt assumenda repellendus fuga saepe laboriosam, ad eligendi architecto provident beatae fugiat modi quisquam incidunt ipsa repudiandae omnis quod dicta. Illo iste laboriosam maxime!
-        Rem quaerat, maiores dicta porro obcaecati aliquam sequi natus deleniti molestiae quod consequuntur consectetur! Autem nam, explicabo veniam natus quos in neque distinctio, quam reiciendis ducimus cum consequatur delectus voluptatibus.
-        Deleniti culpa eum dolorum sit voluptatem blanditiis quae hic magni. Vitae iure, quas architecto nulla ad dolores commodi quasi nihil officia dolor natus aspernatur eius libero doloremque soluta, itaque voluptates?</p>
-      </div>
-    </main>
-      <footer>&copy;Roger M. Reyes</footer>
-      <script src="js/app.js"></script>
-    </body>
-    </html>
+      <canvas id="myChart" width="400" height="200"></canvas>
+    </div>
+    <div id="gridItem4">
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, error eos. Laudantium blanditiis ratione sit
+        ex magnam dolorum officia numquam ut corrupti odit nisi voluptas nostrum, ipsum fugiat, esse amet.
+        Tempore sequi labore et itaque ab sunt assumenda repellendus fuga saepe laboriosam, ad eligendi architecto
+        provident beatae fugiat modi quisquam incidunt ipsa repudiandae omnis quod dicta. Illo iste laboriosam maxime!
+        Rem quaerat, maiores dicta porro obcaecati aliquam sequi natus deleniti molestiae quod consequuntur consectetur!
+        Autem nam, explicabo veniam natus quos in neque distinctio, quam reiciendis ducimus cum consequatur delectus
+        voluptatibus.
+        Deleniti culpa eum dolorum sit voluptatem blanditiis quae hic magni. Vitae iure, quas architecto nulla ad
+        dolores commodi quasi nihil officia dolor natus aspernatur eius libero doloremque soluta, itaque voluptates?</p>
+    </div>
+  </main>
+  <footer>&copy;Roger M. Reyes</footer>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
