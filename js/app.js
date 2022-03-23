@@ -15,6 +15,10 @@ let resultsButton = document.getElementById('resultsButton');
 // let resultsList = document.getElementById('resultList');
 let ctx = document.getElementById('myChart').getContext('2d');
 
+//========== Local Storage Retrieval ===
+let retrieveProducts = localStorage.getItem('products');
+let parsedProducts = JSON.parse(retrieveProducts);
+// console.log(parsedProducts);
 
 //========== Constructor ===============
 function Product(name, fileExtension = 'jpg') {
@@ -26,34 +30,30 @@ function Product(name, fileExtension = 'jpg') {
   productArray.push(this);
 }
 
-for (let i = 0; i < products.length; i++) {
-  if (products[i] === 'sweep') {
-    new Product('sweep', 'png');
-  } else {
-    new Product(`${products[i]}`);
+//If no local storage runs new products through constructor; else runs previous data back through constructor
+if (!retrieveProducts) {
+  for (let i = 0; i < products.length; i++) {
+    if (products[i] === 'sweep') {
+      new Product('sweep', 'png');
+    } else {
+      new Product(`${products[i]}`);
+    }
+  }
+} else {
+  for (let i = 0; i < parsedProducts.length; i++) {
+    if (parsedProducts[i].productName === 'sweep') {
+      let updatedSweep = new Product(parsedProducts[i].productName, 'png');
+      updatedSweep.views = parsedProducts[i].views;
+      updatedSweep.clicks = parsedProducts[i].clicks;
+    } else {
+      let updatedProduct = new Product(parsedProducts[i].productName);
+      updatedProduct.views = parsedProducts[i].views;
+      updatedProduct.clicks = parsedProducts[i].clicks;
+    }
   }
 }
 
-// new Product('bag');
-// new Product('banana');
-// new Product('bathroom');
-// new Product('boots');
-// new Product('breakfast');
-// new Product('bubblegum');
-// new Product('chair');
-// new Product('cthulhu');
-// new Product('dog-duck');
-// new Product('dragon');
-// new Product('pen');
-// new Product('pet-sweep');
-// new Product('scissors');
-// new Product('shark');
-// new Product('sweep', 'png');
-// new Product('tauntaun');
-// new Product('unicorn');
-// new Product('water-can');
-// new Product('wine-glass');
-
+//
 
 //========== Helper Functions ==========
 function getRandomIndex() {
@@ -62,17 +62,20 @@ function getRandomIndex() {
 
 function renderImgs() {
 
+  //Fills Array with 6 unique indexes
   while (previousIndexes.length < 6) {
     let imgIndex = getRandomIndex();
     if (!previousIndexes.includes(imgIndex)) {
       previousIndexes.push(imgIndex);
     }
   }
-  console.log(previousIndexes);
+
+  //Removes the first 3 index is the array
   if (previousIndexes.length === 6) {
     previousIndexes.splice(0, 3);
   }
-  console.log(previousIndexes);
+
+  //Inserts the unique index to populate the image
   imgOne.src = productArray[previousIndexes[0]].image;
   imgOne.alt = productArray[previousIndexes[0]].productName;
   productArray[previousIndexes[0]].views++;
@@ -84,18 +87,6 @@ function renderImgs() {
   imgThree.src = productArray[previousIndexes[2]].image;
   imgThree.alt = productArray[previousIndexes[2]].productName;
   productArray[previousIndexes[2]].views++;
-
-  // let productOneIndex = getRandomIndex();
-  // let productTwoIndex = getRandomIndex();
-  // let productThreeIndex = getRandomIndex();
-
-  // while(productOneIndex === productTwoIndex){
-  //   productTwoIndex = getRandomIndex();
-  // }
-  // while(productThreeIndex === productOneIndex || productThreeIndex === productTwoIndex){
-  //   productThreeIndex = getRandomIndex();
-  // }
-
 }
 renderImgs();
 
@@ -114,6 +105,11 @@ function handleClick(event) {
     let finishText = document.createElement('p');
     finishText.textContent = ('Alright, That\' all for now! Thank You for Taking Our Survey! Click the Show Results button to check out the stats.');
     imgContainer.appendChild(finishText);
+
+    //Converting array into a string and storing in local storage with the key value of 'products'
+    let productStringified = JSON.stringify(productArray);
+    localStorage.setItem('products', productStringified);
+
     return;
   }
   renderImgs();
@@ -165,16 +161,9 @@ function handleShowResults() {
         }
       }
     };
-    let myChart = new Chart(ctx, myChartObj);
+    new Chart(ctx, myChartObj);
   }
 }
-
-
-// for (let i = 0; i < productArray.length; i++) {
-//   let liElem = document.createElement('li');
-//   liElem.textContent = `${productArray[i].productName} was seen ${productArray[i].views} and had ${productArray[i].clicks} votes.`;
-//   resultsList.appendChild(liElem);
-// }
 
 //========== Event Listeners ===========
 imgContainer.addEventListener('click', handleClick);
